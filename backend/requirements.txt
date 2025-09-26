@@ -1,8 +1,5 @@
-Django>=4.2
-djangorestframework
+Django>=4.2,<5.0
 psycopg2-binary
-redis
-celery
+djangorestframework
+django-cors-headers
 gunicorn
-python-dotenv
-django-cros-headers
