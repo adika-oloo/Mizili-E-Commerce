@@ -1,0 +1,38 @@
+[
+  {
+    "model": "products.category",
+    "pk": 1,
+    "fields": {
+      "name": "Seeds",
+      "description": "High-quality planting seeds"
+    }
+  },
+  {
+    "model": "products.category",
+    "pk": 2,
+    "fields": {
+      "name": "Fertilizers",
+      "description": "Organic and chemical fertilizers"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 1,
+    "fields": {
+      "name": "Maize Seeds",
+      "price": 20.5,
+      "stock": 100,
+      "category": 1
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 2,
+    "fields": {
+      "name": "NPK Fertilizer",
+      "price": 45.0,
+      "stock": 50,
+      "category": 2
+    }
+  }
+]

@@ -1,23 +1,22 @@
-version: '3.8'
+version: "3.9"
 
 services:
   db:
     image: postgres:15-alpine
     environment:
-      POSTGRES_DB: mizili
-      POSTGRES_USER: mizili
-      POSTGRES_PASSWORD: password
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - POSTGRES_DB=mizili
+      - POSTGRES_USER=mizili
+      - POSTGRES_PASSWORD=password
     ports:
       - "5432:5432"
-    networks:
-      - mizili-network
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
 
   backend:
-    build: 
+    build:
       context: ./backend
       dockerfile: Dockerfile
+    working_dir: /app
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - ./backend/src:/app
@@ -32,29 +31,16 @@ services:
       - DB_PORT=5432
     depends_on:
       - db
-    networks:
-      - mizili-network
 
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    command: npm run dev
-    volumes:
-      - ./frontend:/app
-      - /app/node_modules
     ports:
       - "3000:3000"
-    environment:
-      - NEXT_PUBLIC_API_URL=http://localhost:8000/api
     depends_on:
       - backend
-    networks:
-      - mizili-network
 
 volumes:
   postgres_data:
 
-networks:
-  mizili-network:
-    driver: bridge
