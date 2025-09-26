@@ -68,4 +68,19 @@ const featureCardStyle = {
   borderRadius: '10px',
   padding: '30px',
   boxShadow: '0 5px 15px rgba(0, 0, 0, 0.05)',
-  transition: 'transform 
+  transition: 'transform 0.3s, box-shadow 0.3s',
+  textAlign: 'center',
+  borderTop: '5px solid var(--primary)'
+}
+
+const featureIconStyle = {
+  fontSize: '3rem',
+  color: 'var(--primary)',
+  marginBottom: '20px'
+}
+
+const h3Style = {
+  fontSize: '1.5rem',
+  marginBottom: '15px',
+  color: 'var(--primary-dark)'
+}
