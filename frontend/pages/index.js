@@ -11,10 +11,9 @@ export default function Home() {
     <>
       <Head>
         <title>Mizili - Transforming Agriculture</title>
-        <meta name="description" content="Connecting Farmers, Buyers, and Agricultural Services" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+        <meta name="description" content="Connecting Farmers, Buyers, and Agricultural Experts" />
       </Head>
-      
+
       <Layout>
         <Hero />
         <Features />
