@@ -1,0 +1,88 @@
+const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
+
+const userSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: [true, 'Please add a name'],
+    trim: true,
+    maxlength: [50, 'Name cannot be more than 50 characters']
+  },
+  email: {
+    type: String,
+    required: [true, 'Please add an email'],
+    unique: true,
+    lowercase: true,
+    match: [
+      /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
+      'Please add a valid email'
+    ]
+  },
+  password: {
+    type: String,
+    required: [true, 'Please add a password'],
+    minlength: 6,
+    select: false
+  },
+  role: {
+    type: String,
+    enum: ['farmer', 'buyer', 'extension'],
+    required: true
+  },
+  phone: {
+    type: String,
+    required: [true, 'Please add a phone number'],
+    maxlength: [20, 'Phone number cannot be longer than 20 characters']
+  },
+  location: {
+    address: { type: String, default: '' },
+    city: { type: String, default: '' },
+    state: { type: String, default: '' },
+    country: { type: String, default: '' }
+  },
+  // Farmer specific
+  farmType: {
+    type: String,
+    enum: ['crops', 'livestock', 'poultry', 'fishery', 'mixed', '']
+  },
+  farmSize: String,
+  // Buyer specific
+  businessType: {
+    type: String,
+    enum: ['retailer', 'wholesaler', 'processor', 'exporter', 'restaurant', '']
+  },
+  businessName: String,
+  // Extension specific
+  expertise: [String],
+  qualifications: String,
+  
+  profileCompleted: {
+    type: Boolean,
+    default: false
+  },
+  avatar: String,
+  bio: String,
+  verified: {
+    type: Boolean,
+    default: false
+  }
+}, {
+  timestamps: true
+});
+
+// Encrypt password using bcrypt
+userSchema.pre('save', async function(next) {
+  if (!this.isModified('password')) {
+    next();
+  }
+
+  const salt = await bcrypt.genSalt(10);
+  this.password = await bcrypt.hash(this.password, salt);
+});
+
+// Match user entered password to hashed password in database
+userSchema.methods.matchPassword = async function(enteredPassword) {
+  return await bcrypt.compare(enteredPassword, this.password);
+};
+
+module.exports = mongoose.model('User', userSchema);

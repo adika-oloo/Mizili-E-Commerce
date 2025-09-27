@@ -8,16 +8,38 @@
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.2",
+    "express": "^5.1.0",
+    "express-validator": "^7.2.1",
     "framer-motion": "^10.18.0",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.0.3",
+    "mongoose": "^8.18.2",
     "next": "13.5.6",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.16",
+    "nodemon": "^3.1.10",
     "postcss": "^8.4.31",
     "tailwindcss": "^3.3.5"
-  }
+  },
+  "description": "Mizili E-Commerce Agricultural Platform",
+  "main": "tailwind.config.js",
+  "directories": {
+    "doc": "docs",
+    "lib": "lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adika-oloo/Mizili-E-Commerce.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adika-oloo/Mizili-E-Commerce/issues"
+  },
+  "homepage": "https://github.com/adika-oloo/Mizili-E-Commerce#readme"
 }
